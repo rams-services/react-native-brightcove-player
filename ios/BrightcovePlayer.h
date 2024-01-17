@@ -9,6 +9,7 @@
 #import <BrightcovePlayerSDK/BCOVPlaybackSession.h>
 #import <BrightcovePlayerSDK/BCOVPUISlider.h>
 #import <BrightcovePlayerSDK/BCOVOfflineVideoManager.h>
+#import <BrightcovePlayerSDK/BCOVFPSBrightcoveAuthProxy.h>
 #import <React/RCTBridge.h>
 #import <React/UIView+React.h>
 

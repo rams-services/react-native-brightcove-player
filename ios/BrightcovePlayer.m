@@ -15,7 +15,13 @@
 }
 
 - (void)setup {
-    _playbackController = [BCOVPlayerSDKManager.sharedManager createPlaybackController];
+    BCOVFPSBrightcoveAuthProxy * proxy = [[BCOVFPSBrightcoveAuthProxy alloc] initWithPublisherId:nil 
+                                                                                 applicationId:nil];
+    BCOVPlayerSDKManager *sdkManager = [BCOVPlayerSDKManager sharedManager];
+    
+    // Brightcove FairPlay adds some category methods to BCOVPlaybackManager. 
+    _playbackController = [sdkManager createFairPlayPlaybackControllerWithAuthorizationProxy:proxy];
+
     _playbackController.delegate = self;
     _playbackController.autoPlay = NO;
     _playbackController.autoAdvance = YES;
