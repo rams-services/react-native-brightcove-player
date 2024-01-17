@@ -11,7 +11,7 @@
 
 ## Supported Version
 
-- iOS 10 >=
+- iOS 13 >=
 - Android 5.0 >=
 - Brightcove SDK 6.x
 
@@ -23,29 +23,62 @@ yarn add react-native-brightcove-player
 
 ### iOS
 
+- First run: `pod repo add BrightcoveSpecs https://github.com/brightcove/BrightcoveSpecs.git` on your terminal
 - Add source to `Podfile` and `pod install && pod update`
 - Specify platform version to `10.0`
 - [Example](https://github.com/manse/react-native-brightcove-player/commit/d4d15dbff828c19fd110fe5764c2c72279e50d6a)
 
 ```rb
+platform :ios, 13
+source 'https://github.com/CocoaPods/Specs.git'
+pod 'Brightcove-Player-Core', '6.6.2'
 source 'https://github.com/brightcove/BrightcoveSpecs.git'
-
-platform :ios, '10.0'
 ```
 
 ### Android
 
-- Add maven source to repositories in `android/build.gradle`
-- [Enables multiDex](https://developer.android.com/studio/build/multidex).
-- [Example](https://github.com/manse/react-native-brightcove-player/commit/337450274a0c7ed3b8de890837e60949e6df1db0)
-
+- Add maven and jcenter sources to repositories in `android/build.gradle`
 ```gradle
+buildscript {
+    repositories {
+        google()
+            mavenCentral()
+            jcenter()
+    }
+}
+```
+
+- And the following for all your projects
+```gradle 
 allprojects {
-  repositories {
-      maven {
-          url 'http://repo.brightcove.com/releases'
+    configurations.all {
+      resolutionStrategy {
+        force "com.facebook.react:react-native:" + REACT_NATIVE_VERSION
       }
-  }
+    }
+
+    repositories {
+      jcenter()
+      maven {
+        url "$projectDir/../node_modules/react-native/android"
+      }
+
+      maven {
+        url 'https://repo.brightcove.com/releases'
+      }
+
+      maven {
+        url 'https://maven.google.com'
+      }
+    }
+}
+```
+
+- Inside app/build.gradle, add the following: 
+```gradle 
+dependencies {
+    implementation "com.android.support:multidex:2.0.1"
+    implementation "androidx.media:media:1.1.0"
 }
 ```
 

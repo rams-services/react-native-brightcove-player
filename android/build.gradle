@@ -11,10 +11,7 @@ buildscript {
         jcenter()
     }
      dependencies {
-         // classpath 'com.android.tools.build:gradle:2.2.3'
-        //classpath("com.android.tools.build:gradle:7.0.4")
-        classpath("com.android.tools.build:gradle:4.2.0")
-    
+       classpath("com.android.tools.build:gradle:4.2.0")
      }
 }
 
@@ -34,7 +31,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
-    // buildToolsVersion "28.0.3"
 
     defaultConfig {
         minSdkVersion getExtOrIntegerDefault('minSdkVersion')
@@ -56,5 +52,4 @@ dependencies {
     implementation "com.android.support:multidex:2.0.1"
     implementation "com.brightcove.player:exoplayer2:6.8.0"
     implementation "androidx.media:media:1.1.0"
-    // implementation 'com.google.android.exoplayer:exoplayer:2.19.1'
 }
